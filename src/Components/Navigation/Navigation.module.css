@@ -1,0 +1,16 @@
+.nav {
+  margin: 20px;
+}
+
+.NavLink {
+  font-size: 28px;
+  color: black;
+  font-weight: 800;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-right: 30px;
+}
+
+.NavLink__active {
+  color: rgb(35, 8, 192);
+}
