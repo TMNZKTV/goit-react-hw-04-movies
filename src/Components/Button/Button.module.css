@@ -1,0 +1,8 @@
+.back__button {
+    margin: 0 0 20px 0;
+    height: 50px;
+    width: 150px;
+    border: none;
+    outline: 1px solid transparent;
+    border-radius: 6px;
+}

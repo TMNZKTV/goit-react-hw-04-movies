@@ -1,0 +1,31 @@
+.movie__card {
+    display: flex;
+}
+.about__movie {
+    margin: 0 20px 20px 20px;
+    display: block;
+}
+.about__movie > h1 {
+    margin-top: 0;
+}
+.about__info {
+    font-weight: 600;
+    font-size: 16px;
+}
+.genres {
+    font-weight: 600;
+    font-size: 16px;
+}
+.genre {
+    font-weight: 400;
+    margin: 0;
+}
+.info__card {
+    margin: 20px;
+}
+
+.info__link {
+    text-decoration: none;
+    font-weight: 600;
+    color: black;
+}

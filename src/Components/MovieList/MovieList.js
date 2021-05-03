@@ -8,8 +8,6 @@ import MoviePreview from '../MoviePreview/MoviePreview';
 import styles from '../MovieList/MovieList.module.css';
 
 const MovieList = ({ movies, location }) => {
-    // const imgPath = 'https://image.tmdb.org/t/p/w500/';
-
     return (
         <ul className={styles.list}>
             {movies.map(({ id, poster_path, title }) => (

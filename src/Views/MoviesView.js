@@ -1,59 +1,74 @@
-import React, { Component } from "react";
-import Axios from "axios";
+import React, { Component } from 'react';
+import queryString from 'query-string';
 
 // Components
-import MovieList from "../Components/MovieList/MovieList";
+import MovieList from '../Components/MovieList/MovieList';
+import SearchForm from '../Components/SearchForm/SearchForm';
 
 // Additional
-import styles from "../Views/MoviesView.module.css";
+import moviesApi from '../Services/moviesApi';
 
 class MoviesView extends Component {
-  state = {
-    query: "",
-    movies: [],
-  };
+    state = {
+        query: '',
+        movies: null,
+        error: null,
+    };
 
-  handleChange = (e) => {
-    this.setState({ query: e.currentTarget.value });
-  };
+    componentDidMount() {
+        const { search } = this.props.location;
+        const parsedPrevSearch = queryString.parse(search);
+        const prevQuery = parsedPrevSearch.query;
 
-  handleSubmit = (e) => {
-    e.preventDefault();
+        this.setState({ query: prevQuery });
 
-    Axios.get(
-      `https://api.themoviedb.org/3/search/movie?api_key=0e02bce2bb8651f28e47e5fdc0b7d325&query=${this.state.query}`
-    ).then((response) => this.setState({ movies: response.data.results }));
+        if (prevQuery) {
+            moviesApi
+                .requestedMoviesFetch(prevQuery)
+                .then(results => this.setState({ movies: results }))
+                .catch(error => this.setState({ error }));
+        }
+    }
 
-    this.setState({
-      query: "",
-    });
-  };
+    handleChange = e => {
+        this.setState({ query: e.currentTarget.value });
+    };
 
-  render() {
-    const { movies, query } = this.state;
+    handleSubmit = e => {
+        e.preventDefault();
+        const { query } = this.state;
+        const { history } = this.props;
 
-    return (
-      <>
-        <div className={styles.search__field}>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              className={styles.input}
-              onChange={this.handleChange}
-              type="text"
-              autoComplete="off"
-              placeholder="Search for a movie"
-              value={query}
-            />
-            <button type="submit" className={styles.search__button}>
-              <span>Search</span>
-            </button>
-          </form>
-        </div>
+        query &&
+            moviesApi
+                .requestedMoviesFetch(query)
+                .then(results => this.setState({ movies: results }))
+                .catch(error => this.setState({ error }));
 
-        <MovieList movies={movies} />
-      </>
-    );
-  }
+        history.push({
+            search: `?query=${query}`,
+        });
+
+        this.setState({
+            query: '',
+        });
+    };
+
+    render() {
+        const { movies, query } = this.state;
+
+        return (
+            <>
+                <SearchForm
+                    query={query}
+                    handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit}
+                />
+
+                {movies && <MovieList movies={movies} />}
+            </>
+        );
+    }
 }
 
 export default MoviesView;
