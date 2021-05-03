@@ -1,1 +1,0 @@
-{"version":3,"sources":["Views/NotFoundView.js"],"names":["NotFoundView"],"mappings":"yIAAA,uBAMeA,UAJM,WACnB,OAAO","file":"static/js/7.15430830.chunk.js","sourcesContent":["import React from \"react\";\n\nconst NotFoundView = () => {\n  return <h1>Nothing here!</h1>;\n};\n\nexport default NotFoundView;\n"],"sourceRoot":""}

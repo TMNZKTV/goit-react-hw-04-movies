@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 
 // Components
 import AppBar from './Components/AppBar/AppBar';
+import Heading from './Components/Heading/Heading';
 
 // Additional
 import routes from './routes';
@@ -26,7 +27,7 @@ const NotFoundView = lazy(
 const App = () => (
     <>
         <AppBar />
-        <Suspense fallback={<h1>Загружаем!</h1>}>
+        <Suspense fallback={<Heading>Загружаем!</Heading>}>
             <Switch>
                 <Route exact path={routes.home} component={HomeView} />
                 <Route

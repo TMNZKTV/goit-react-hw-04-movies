@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
+import Heading from '../Components/Heading/Heading';
 
 const NotFoundView = () => {
-  return <h1>Nothing here!</h1>;
+    return <Heading>Nothing here!</Heading>;
 };
 
 export default NotFoundView;

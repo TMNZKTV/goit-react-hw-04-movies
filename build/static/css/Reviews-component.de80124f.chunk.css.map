@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/Components/Reviews/Reviews.module.css"],"names":[],"mappings":"AAAA,6BACI,UACJ,CAEA,qBACI,eAAgB,CAChB,cACJ","file":"Reviews-component.de80124f.chunk.css","sourcesContent":[".review__item {\n    width: 100%;\n}\n\n.user {\n    font-weight: 600;\n    font-size: 20px;\n}\n"]}
