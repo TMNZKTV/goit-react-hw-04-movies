@@ -5,20 +5,21 @@ import Axios from 'axios';
 import Heading from '../Components/Heading/Heading';
 import MovieList from '../Components/MovieList/MovieList';
 import Container from '../Components/Container/Container';
+import moviesApi from '../Services/moviesApi';
 
 const apiKey = '0e02bce2bb8651f28e47e5fdc0b7d325';
 
 class HomeView extends Component {
     state = {
         movies: [],
+        error: null,
     };
 
     async componentDidMount() {
-        const response = await Axios.get(
-            `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`,
-        );
-
-        this.setState({ movies: response.data.results });
+        moviesApi
+            .popularMovieFetch()
+            .then(movies => this.setState({ movies }))
+            .catch(error => this.setState({ error }));
     }
 
     render() {
